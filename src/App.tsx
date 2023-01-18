@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+//* TODO: Сделать варианты выбора времени
 function App() {
   const TIME_FOR_GAME = 10;
   const [text, setText] = useState('');
@@ -24,7 +25,7 @@ function App() {
   const endGame = () => {
     setIsStarted(false);
     const arr = text.trim().split(" ");
-    const filteredArr = arr.filter(word => word.length > 2);
+    const filteredArr = arr.filter(word => word.length > 2); //! считаю слова только больше двух символов
     console.log(arr.length, filteredArr.length);
     setCount(filteredArr.length);
   };
@@ -37,7 +38,8 @@ function App() {
       }, 1000)
     } else if (time === 0) {
       endGame();
-    }
+    };
+
     return () => clearTimeout(id);
   }, [time, isStarted])
 
