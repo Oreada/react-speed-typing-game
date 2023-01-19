@@ -1,10 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
 html,
 body {
   background: black;
-  color: #00b800;
+  /* color: #00b800; */
+  /* color: #00b800c5; */
+  color: #a6d597;
   margin: 0;
   padding: 0;
-  padding-top: 10px;
   font-family: 'Press Start 2P', cursive;
   text-align: center;
 }
@@ -13,34 +20,62 @@ body {
   font-weight: 400;
 }
 
+.main-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  padding-top: 60px;
+}
+
 button {
   font-family: 'Press Start 2P', cursive;
   display: block;
   margin: 0 auto;
   border: none;
-  background: #a80020;
+  /* background: #00b800c5; */
   background: #00b800;
   padding: 10px 20px;
   text-transform: uppercase;
+
+  cursor: pointer;
 }
 
 h1,
 h2 {
   font-size: 20px;
+  letter-spacing: 0.5px;
   text-align: center;
 }
 
 textarea {
   font-family: 'Press Start 2P', cursive;
+  line-height: 1.5;
   border: 3px solid black;
   width: 90%;
   margin: 0 auto;
   outline: none;
   height: 200px;
-  background: #00b800;
-  padding: 10px;
+  background: #a6d597;
+  padding: 20px;
 }
 
 textarea:disabled {
   background-color: #a5a2a2;
+}
+
+label {
+  letter-spacing: 0.5px;
+  margin-right: 10px;
+
+  cursor: pointer;
+}
+
+.radiobuttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
