@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { RADIO_1 } from './constants';
 
 function useGame() {
@@ -30,13 +30,13 @@ function useGame() {
 		(textareaRef.current as unknown as HTMLTextAreaElement).focus();
 	};
 
-	const endGame = () => {
+	const endGame = useCallback(() => {
 		setIsStarted(false);
 		const arr = text.trim().split(" ");
 		const filteredArr = arr.filter(word => word.length > 1); //! считаю слова только длиннее одного символа
 		console.log(arr.length, filteredArr.length);
 		setCount(filteredArr.length);
-	};
+	}, [text]);
 
 	useEffect(() => {
 		let id: NodeJS.Timeout;
@@ -49,7 +49,7 @@ function useGame() {
 		};
 
 		return () => clearTimeout(id);
-	}, [time, isStarted])
+	}, [time, isStarted, endGame])
 
 	return { text, time, isStarted, count, textareaRef, handleChange, startGame, handleRadioChange, choosenTime };
 }
