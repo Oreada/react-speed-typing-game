@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { RADIO_1 } from './constants';
 
 function useGame() {
-	const TIME_FOR_GAME = 10;
+	const [choosenTime, setChoosenTime] = useState(Number(RADIO_1));
 	const [text, setText] = useState('');
-	const [time, setTime] = useState(TIME_FOR_GAME);
+	const [time, setTime] = useState(choosenTime);
 	const [isStarted, setIsStarted] = useState(false);
 	const [count, setCount] = useState(0);
 	const textareaRef = useRef(null);
@@ -12,9 +13,17 @@ function useGame() {
 		setText(event.target.value);
 	};
 
+	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setChoosenTime(Number(event.target.value));
+		setTime(Number(event.target.value));
+
+		(textareaRef.current as unknown as HTMLTextAreaElement).focus();
+		setText("");
+	};
+
 	const startGame = () => {
 		setIsStarted(true);
-		setTime(TIME_FOR_GAME);
+		setTime(choosenTime);
 		setCount(0);
 		setText("");
 		(textareaRef.current as unknown as HTMLTextAreaElement).disabled = false; //! добавляем эту строку, т.к. setIsStarted не срабатывает мгновенно
@@ -42,7 +51,7 @@ function useGame() {
 		return () => clearTimeout(id);
 	}, [time, isStarted])
 
-	return { text, time, isStarted, count, textareaRef, handleChange, startGame };
+	return { text, time, isStarted, count, textareaRef, handleChange, startGame, handleRadioChange, choosenTime };
 }
 
 export default useGame;
