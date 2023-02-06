@@ -39,17 +39,20 @@ function useGame() {
 	}, [text]);
 
 	useEffect(() => {
-		let id: NodeJS.Timeout;
-		if ((time > 0) && isStarted) {
-			id = setTimeout(() => {
+		// let id: NodeJS.Timeout;
+		// if ((time > 0) && isStarted) {
+		let id = setTimeout(() => {
+			if ((time > 0) && isStarted) {
 				setTime(time => time - 1)
-			}, 1000)
-		} else if (time === 0) {
-			endGame();
-		};
+			} else if (time === 0) {
+				endGame();
+			};
+		}, 1000);
 
-		return () => clearTimeout(id);
-	}, [time, isStarted, endGame])
+		return () => {
+			clearTimeout(id);
+		};
+	}, [time, isStarted])
 
 	return { text, time, isStarted, count, textareaRef, handleChange, startGame, handleRadioChange, choosenTime };
 }
