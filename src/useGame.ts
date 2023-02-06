@@ -52,6 +52,7 @@ function useGame() {
 		return () => {
 			clearTimeout(id);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [time, isStarted])
 
 	return { text, time, isStarted, count, textareaRef, handleChange, startGame, handleRadioChange, choosenTime };
